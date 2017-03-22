@@ -21,11 +21,11 @@ namespace Wlitsoft.Framework.Caching.Redis
     public static class AppBuilderExtension
     {
         /// <summary>
-        /// 设置 Redis 缓存配置。
+        /// 设置 Redis 缓存。
         /// </summary>
         /// <param name="appBuilder">应用构造。</param>
         /// <param name="config">Redis 缓存配置。</param>
-        public static void SetRedisCacheConfig(this AppBuilder appBuilder, RedisCacheConfiguration config)
+        public static void SetRedisCache(this AppBuilder appBuilder, RedisCacheConfiguration config)
         {
             #region 参数校验
 
@@ -34,14 +34,14 @@ namespace Wlitsoft.Framework.Caching.Redis
 
             #endregion
 
-            RedisCache.RedisCacheConfiguration = config;
+            appBuilder.SetDistributedCache(new RedisCache(config));
         }
 
         /// <summary>
         /// 以项目配置文件 AppSettings 节点设置 Redis 缓存。
         /// </summary>
         /// <param name="appBuilder"></param>
-        public static void SetRedisCacheConfigByAppSettings(this AppBuilder appBuilder)
+        public static void SetRedisCacheByAppSettings(this AppBuilder appBuilder)
         {
             RedisCacheConfiguration config = new RedisCacheConfiguration();
             if (ConfigurationManager.AppSettings["RedisCache.HostAndPoints"] != null)
@@ -54,7 +54,7 @@ namespace Wlitsoft.Framework.Caching.Redis
             if (ConfigurationManager.AppSettings["RedisCache.ConnectTimeout"] != null)
                 config.ConnectTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["RedisCache.ConnectTimeout"]);
 
-            appBuilder.SetRedisCacheConfig(config);
+            appBuilder.SetRedisCache(config);
         }
     }
 }

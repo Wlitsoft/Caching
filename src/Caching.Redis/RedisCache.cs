@@ -33,7 +33,20 @@ namespace Wlitsoft.Framework.Caching.Redis
         private readonly SemaphoreSlim _connectionLock = new SemaphoreSlim(1, 1);
 
         //Redis 配置。
-        internal static RedisCacheConfiguration RedisCacheConfiguration;
+        private readonly RedisCacheConfiguration _redisCacheConfiguration;
+
+        #endregion
+
+        #region 构造方法
+
+        /// <summary>
+        /// 初始化 <see cref="RedisCache"/> 类的新实例。
+        /// </summary>
+        /// <param name="config">Redis 缓存配置。</param>
+        public RedisCache(RedisCacheConfiguration config)
+        {
+            this._redisCacheConfiguration = config;
+        }
 
         #endregion
 
@@ -268,21 +281,21 @@ namespace Wlitsoft.Framework.Caching.Redis
         {
             #region 校验
 
-            if (RedisCacheConfiguration == null)
+            if (this._redisCacheConfiguration == null)
                 throw new ObjectNullException(nameof(RedisCacheConfiguration));
 
-            if (!RedisCacheConfiguration.HostAndPoints.Any())
+            if (!this._redisCacheConfiguration.HostAndPoints.Any())
                 throw new Exception("RedisCahce 的 HostAndPoints 不能为空");
 
             #endregion
 
             ConfigurationOptions options = new ConfigurationOptions();
 
-            foreach (string item in RedisCacheConfiguration.HostAndPoints)
+            foreach (string item in this._redisCacheConfiguration.HostAndPoints)
                 options.EndPoints.Add(item);
 
-            options.ConnectRetry = RedisCacheConfiguration.ConnectRetry;
-            options.ConnectTimeout = RedisCacheConfiguration.ConnectTimeout;
+            options.ConnectRetry = this._redisCacheConfiguration.ConnectRetry;
+            options.ConnectTimeout = this._redisCacheConfiguration.ConnectTimeout;
 
             return options;
         }

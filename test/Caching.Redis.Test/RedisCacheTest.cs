@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Threading;
 using Caching.Redis.Test.Fake;
 using Wlitsoft.Framework.Caching.Redis;
@@ -13,7 +15,13 @@ namespace Caching.Redis.Test
 
         public RedisCacheTest()
         {
-            this._cache = new RedisCache();
+            this._cache = new RedisCache(new RedisCacheConfiguration()
+            {
+                HostAndPoints = new List<string>
+                {
+                    "192.168.147.111:6379"
+                }
+            });
         }
 
         [Fact]

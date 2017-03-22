@@ -7,7 +7,7 @@ namespace Caching.Redis.Test
     {
         static TestBase()
         {
-            App.Builder.SetRedisCacheConfigByAppSettings();
+            App.Builder.SetRedisCacheByAppSettings();
         }
     }
 }
