@@ -1,5 +1,12 @@
 # Wlitsoft.Framework.Caching
 Wlitsoft 框架 - 分布式缓存
+[![Build status](https://ci.appveyor.com/api/projects/status/v575krel0vjv6ew5?svg=true)](https://ci.appveyor.com/project/Wlitsoft/caching)
+
+## NuGet
+
+包名称  | 当前版本 |
+-------- | :------------ |
+Wlitsoft.Framework.Caching.Redis | [![NuGet](https://img.shields.io/nuget/v/Wlitsoft.Framework.Caching.Redis.svg)](https://www.nuget.org/packages/Wlitsoft.Framework.Caching.Redis)
 
 ## Redis 实现
 
