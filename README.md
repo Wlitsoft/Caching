@@ -1,5 +1,6 @@
 # Wlitsoft.Framework.Caching
 Wlitsoft 框架 - 分布式缓存
+
 [![Build status](https://ci.appveyor.com/api/projects/status/v575krel0vjv6ew5?svg=true)](https://ci.appveyor.com/project/Wlitsoft/caching)
 
 ## NuGet
